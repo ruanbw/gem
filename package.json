@@ -1,0 +1,61 @@
+{
+  "name": "nuxt-template",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build:all": "sh scripts/build.sh",
+    "build": "dotenv -e .env.production nuxt build",
+    "staging": "dotenv -e .env.staging nuxt build",
+    "dev": "dotenv -e .env.development -- nuxt dev --host 0.0.0.0",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^6.7.1",
+    "@google/model-viewer": "^4.1.0",
+    "@iconify/json": "^2.2.420",
+    "@nuxt/icon": "^2.1.1",
+    "@nuxt/image": "^2.0.0",
+    "@pinia/nuxt": "^0.11.3",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tiptap/extension-image": "^3.14.0",
+    "@tiptap/starter-kit": "^3.14.0",
+    "@tiptap/vue-3": "^3.14.0",
+    "@types/node": "^24.10.4",
+    "@vee-validate/zod": "^4.15.1",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dotenv-cli": "^7.4.4",
+    "eslint": "^9.39.2",
+    "lint-staged": "^16.2.7",
+    "lucide-vue-next": "^0.562.0",
+    "nuxt": "^4.2.2",
+    "nuxt-og-image": "^5.1.13",
+    "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "reka-ui": "^2.6.1",
+    "shadcn-nuxt": "2.4.3",
+    "simple-git-hooks": "^2.13.1",
+    "sweetalert2": "^11.26.12",
+    "swiper": "^12.0.3",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.18",
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.182.0",
+    "vaul-vue": "^0.4.1",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4",
+    "vue-sonner": "^2.0.9",
+    "zod": "^4.3.4"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}

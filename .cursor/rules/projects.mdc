@@ -1,0 +1,10 @@
+---
+name: projects
+description: This is a new rule
+---
+
+# Overview
+
+Insert overview text here. The agent will only see this should they choose to apply the rule.
+
+- 每次修改后通过 chrome-devtools-mcp 效验逻辑是否正确。
