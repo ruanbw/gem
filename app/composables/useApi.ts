@@ -3,7 +3,7 @@ import { toast } from 'vue-sonner'
 import { useUserStore } from '~/stores/user'
 
 interface ApiResponse<T> {
-  message: string
+  msg: string
   data?: T
   code: number
 }
@@ -44,13 +44,13 @@ export function useApi<T>(path: string, options: FetchOptions = {}) {
         return
       }
 
-      const { data, code, message } = responseData
+      const { data, code, msg } = responseData
 
       // 根据业务状态码处理错误
       if (code !== 200 && code !== 0) {
         // 401 未授权，跳转到登录页
         if (code === 401) {
-          toast.error(message)
+          toast.error(msg)
           const userStore = useUserStore()
           userStore.logout()
           // SSR 安全处理
@@ -66,18 +66,18 @@ export function useApi<T>(path: string, options: FetchOptions = {}) {
           // 抛出错误以阻止后续处理
           throw createError({
             statusCode: 401,
-            message: message || '未授权',
+            message: msg || '未授权',
             data: responseData,
           })
         }
 
         // 其他错误状态码
-        toast.error(message)
+        toast.error(msg)
 
         // 抛出错误以阻止后续处理
         throw createError({
           statusCode: code,
-          message: message || '请求失败',
+          message: msg || '请求失败',
           data: responseData,
         })
       }
