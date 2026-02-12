@@ -33,6 +33,12 @@ const selectedSpecs = useState<Record<string, string>>('selectedSpecs', () => ({
 // 匹配到的SKU
 const selectedSku = ref<ProductSkuResponse | null>(null)
 
+// 每次进入商品详情页或商品ID变化时，重置已选规格和SKU，避免默认选中
+watch(productId, () => {
+  selectedSpecs.value = {}
+  selectedSku.value = null
+}, { immediate: true })
+
 // 检查SKU是否启用（支持数字枚举和字符串两种格式）
 function isSkuEnabled(status: ProductSkuStatus | string): boolean {
   return status === ProductSkuStatus.ENABLED || status === 'ENABLED'
