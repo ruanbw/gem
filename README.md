@@ -19,7 +19,7 @@
 
 - **技术栈**：Nuxt 4、Vue 3、Pinia、VueUse、shadcn-nuxt（Reka UI + Tailwind）、Nuxt Image/Icon、vue-sonner 等（见 `package.json`）。
 - **目录与职责**：
-  - `app/pages/`：路由页面（首页、商品列表/详情、购物车、订单、结算、认证、个人中心、新闻、联系等）。
+  - `app/pages/`：路由页面（首页、商品列表/详情、购物车、订单、结算、认证、个人中心、文章、联系等）。
   - `app/components/`：通用组件（Header、Footer、Navbar、ProductCard、Swiper、Breadcrumb 等）与 `ui/` 下 shadcn 组件。
   - `app/api/`：封装服务端 API 调用（如 `getProductDetail`、`getProductList` 等）。
   - `app/composables/`：`useApi`（统一请求、解包 data、401 跳转与 toaster）、`useAuth`、`useFilePath`（资源 URL 与 fileUrl 拼接）等。

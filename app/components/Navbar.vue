@@ -20,8 +20,7 @@ watch(isAuthenticated, () => {
 const navigationItems = [
   { name: '首页', path: '/' },
   { name: '产品', path: '/products' },
-  { name: '新闻', path: '/news' },
-  { name: '联系我们', path: '/contact' },
+  { name: '文章', path: '/news' },
 ]
 
 // 获取用户邮箱显示
@@ -61,6 +60,9 @@ async function doLogin() {
             class="font-medium"
           >
             {{ item.name }}
+          </NuxtLink>
+          <NuxtLink to="/orders" class="font-medium" v-if="isAuthenticated">
+            我的订单
           </NuxtLink>
         </div>
       </div>

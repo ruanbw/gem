@@ -125,7 +125,7 @@ useHead({
     <div v-else-if="newsArticle">
       <Breadcrumb class="pb-8" />
 
-      <!-- 新闻标题 -->
+      <!-- 文章标题 -->
       <header class="mb-6">
         <h1 class="text-4xl font-bold mb-4">
           {{ newsArticle.title }}
