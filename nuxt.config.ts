@@ -104,7 +104,7 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
     ssr: {
-      noExternal: ['@google/model-viewer'],
+      noExternal: ['@google/model-viewer', 'three'],
     },
   },
 })

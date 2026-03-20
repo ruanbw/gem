@@ -236,6 +236,7 @@ interface ModelSkuItem {
   coverImage: string
   modelUrl: string
   sku: ProductSkuResponse
+  format: 'glb' | 'gltf'
 }
 
 // 获取所有可用的3D模型SKU信息（包含封面图和模型URL）
@@ -254,6 +255,21 @@ const modelSkus = computed(() => {
       && sku.coverImage
       && sku.coverImage.trim()
     ) {
+      const modelUrlLower = sku.modelUrl.toLowerCase()
+      let format: 'glb' | 'gltf' | null = null
+
+      if (modelUrlLower.endsWith('.glb')) {
+        format = 'glb'
+      }
+      else if (modelUrlLower.endsWith('.gltf')) {
+        format = 'gltf'
+      }
+
+      if (!format) {
+        console.warn(`[3D模型] 不支持的格式: ${sku.modelUrl}，支持的格式: .glb, .gltf`)
+        return
+      }
+
       // 使用 useFilePath 处理路径（已自动处理完整路径和相对路径）
       const fullModelPath = useFilePath(sku.modelUrl)
       if (fullModelPath) {
@@ -261,6 +277,7 @@ const modelSkus = computed(() => {
           coverImage: sku.coverImage,
           modelUrl: fullModelPath,
           sku,
+          format,
         })
       }
     }
@@ -457,7 +474,10 @@ watch(() => modelSkus.value.length, (len) => {
             <Icon name="mdi:cart-plus" class="size-4" />
             购买
           </Button>
-          <Button variant="outline" @click="isDetailDrawerOpen = true">
+          <Button
+            v-if="modelSkus.length > 0" variant="outline"
+            @click="isDetailDrawerOpen = true"
+          >
             <Icon name="carbon:3d-cursor" class="size-4" />
             3D
           </Button>
@@ -509,9 +529,13 @@ watch(() => modelSkus.value.length, (len) => {
 
           <!-- Model Viewer -->
           <ClientOnly>
-            <model-viewer
-              v-if="currentModel" :key="currentModel.modelUrl" :src="currentModel.modelUrl"
-              loading="eager" camera-controls auto-rotate style="width: 100%; height: 100%;" @load="handleModelLoad"
+            <RhinoModelViewer
+              v-if="currentModel"
+              :key="currentModel.modelUrl"
+              :src="currentModel.modelUrl"
+              :auto-rotate="true"
+              :camera-controls="true"
+              @load="handleModelLoad"
               @error="handleModelError"
             />
           </ClientOnly>
