@@ -30,12 +30,12 @@ const editor = useEditor({
   editable: false,
 })
 
-watch(() => props.content, (newContent) => {
-  if (editor.value && newContent) {
+watch([() => props.content, editor], ([newContent, editorInstance]) => {
+  if (editorInstance && newContent) {
     const processedContent = processArticleContent(newContent)
-    editor.value.commands.setContent(processedContent)
+    editorInstance.commands.setContent(processedContent)
   }
-}, { immediate: true })
+})
 
 onUnmounted(() => {
   if (editor.value) {
