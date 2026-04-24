@@ -26,7 +26,7 @@
   </div> -->
   <section class="flex flex-col min-h-screen text-xs">
     <Header />
-    <main class="flex-1 flex flex-col">
+    <main class="flex-1 flex flex-col pt-20">
       <NuxtPage />
     </main>
     <Footer />

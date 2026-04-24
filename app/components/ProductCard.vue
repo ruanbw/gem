@@ -8,41 +8,32 @@ defineProps<{
 </script>
 
 <template>
-  <div
-    class=" overflow-hidden cursor-pointer"
-    @click="navigateTo(`/products/${product.id}`)"
+  <NuxtLink
+    :to="`/products/${product.id}`"
+    class="group block cursor-pointer"
   >
     <!-- 封面图 -->
-    <div class="w-full aspect-square overflow-hidden bg-gray-200">
+    <div class="relative w-full aspect-[4/5] overflow-hidden bg-[#F0EFED]">
       <NuxtImg
         v-if="product.coverImage"
         :src="useFilePath(product.coverImage)"
         :alt="product.name"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+        loading="lazy"
       />
       <div
         v-else
         class="w-full h-full flex items-center justify-center"
       >
-        <Icon name="mdi:image-off" class="text-4xl text-gray-400" />
+        <Icon name="mdi:image-off" class="text-3xl text-[#C5C3BF]" />
       </div>
     </div>
 
     <!-- 商品名称 -->
-    <div class="p-4">
-      <h3 class=" font-semibold text-gray-900 line-clamp-1">
+    <div class="pt-4 pb-1">
+      <h3 class="font-body text-[13px] font-normal tracking-wide text-[#4A4946] line-clamp-1 transition-colors duration-300 group-hover:text-[#1A1A1A]">
         {{ product.name }}
       </h3>
     </div>
-  </div>
+  </NuxtLink>
 </template>
-
-<style scoped>
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style>

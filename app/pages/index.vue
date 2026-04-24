@@ -2,8 +2,8 @@
 import { getBanner } from '@/api/banner'
 import HotProducts from '@/components/HotProducts.vue'
 import LatestProducts from '@/components/LatestProducts.vue'
+import BrandStory from '@/components/BrandStory.vue'
 
-// 使用 useAsyncData 获取Banner数据，实现 SSR
 const { data: bannerData } = await useAsyncData(
   'banner',
   () => getBanner(),
@@ -12,7 +12,6 @@ const { data: bannerData } = await useAsyncData(
   },
 )
 
-// 将 BannerItem[] 转换为 SwiperData[] 格式
 const swiperData = computed(() => {
   if (!bannerData.value || !bannerData.value.items || bannerData.value.items.length === 0) {
     return []
@@ -29,6 +28,7 @@ const swiperData = computed(() => {
   <section>
     <Swiper :data="swiperData" />
     <HotProducts />
+    <BrandStory />
     <LatestProducts />
   </section>
 </template>
