@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { ArticleItem } from '~/types/article'
-import { useFilePath } from '~/composables/useFilePath'
+import type { ArticleItem } from '@/types/article'
+import { useFilePath } from '@/composables/useFilePath'
 
 defineProps<{
   article: ArticleItem
