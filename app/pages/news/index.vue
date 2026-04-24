@@ -2,6 +2,7 @@
 import type { ArticleListParams } from '@/api/article'
 import type { ArticleItem } from '@/types/article'
 import { getArticleList } from '@/api/article'
+import ArticleCard from '@/components/article/ArticleCard.vue'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -12,7 +13,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import ArticleCard from '@/components/article/ArticleCard.vue'
 
 const searchTitle = ref('')
 const currentPage = ref(1)

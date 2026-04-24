@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { Article } from '@/types/article'
 import { getArticleDetail } from '@/api/article'
+import ArticleContent from '@/components/article/ArticleContent.vue'
+import ArticleHeader from '@/components/article/ArticleHeader.vue'
 import { Button } from '@/components/ui/button'
 import { useFilePath } from '@/composables/useFilePath'
-import ArticleHeader from '@/components/article/ArticleHeader.vue'
-import ArticleContent from '@/components/article/ArticleContent.vue'
 
 const route = useRoute()
 const newsId = computed(() => route.params.id as string)
